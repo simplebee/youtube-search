@@ -10,7 +10,7 @@ const VideoList = (props) => {
   return (
     <Grid>
       <Row>
-        <Col xs={4} md={4}>
+        <Col xs={5} md={5}>
           <ListGroup>
             {videoItems}
           </ListGroup>

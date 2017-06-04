@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search-bar';
+import VideoPlayer from './components/video-player';
 import VideoList from './components/video-list';
 import youtubeSearch from './utils/youtube-search';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -21,6 +22,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
+        <VideoPlayer video={this.state.videos[0]}/>
         <VideoList videos={this.state.videos} />
       </div>
     );

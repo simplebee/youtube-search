@@ -1,10 +1,9 @@
 import React from 'react';
 import {ListGroupItem, Media} from 'react-bootstrap';
 
-const VideoListItem = (props) => {
-  const imgurl = props.video.snippet.thumbnails.default.url;
-  const title = props.video.snippet.title;
-  const description = props.video.snippet.description;
+const VideoListItem = ({video}) => {
+  const imgurl = video.snippet.thumbnails.default.url;
+  const title = video.snippet.title;
 
   return (
     <ListGroupItem>
@@ -15,7 +14,6 @@ const VideoListItem = (props) => {
 
         <Media.Body>
           <Media.Heading>{title}</Media.Heading>
-          <p>{description}</p>
         </Media.Body>
       </Media>
     </ListGroupItem>

@@ -4,6 +4,7 @@ import SearchBar from './components/search-bar';
 import VideoPlayer from './components/video-player';
 import VideoList from './components/video-list';
 import youtubeSearch from './utils/youtube-search';
+import {Grid, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
 
@@ -20,11 +21,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <SearchBar />
-        <VideoPlayer video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos} />
-      </div>
+      <Grid>
+        <Row>
+          <SearchBar />
+        </Row>
+        <Row>
+          <VideoPlayer video={this.state.videos[0]}/>
+          <VideoList videos={this.state.videos} />
+        </Row>
+      </Grid>
     );
   }
 }

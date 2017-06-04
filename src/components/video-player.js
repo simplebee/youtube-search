@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Row, Col, ResponsiveEmbed} from 'react-bootstrap';
+import {Col, ResponsiveEmbed, Panel} from 'react-bootstrap';
 
 const VideoPlayer = ({video}) => {
   if (!video) {
@@ -12,18 +12,17 @@ const VideoPlayer = ({video}) => {
   const description = video.snippet.description;
 
   return (
-    <Grid>
-      <Row>
-        <Col xs={10} md={10}>
-          <ResponsiveEmbed a16by9>
-            <iframe src={url} title={title} allowFullScreen></iframe>
-          </ResponsiveEmbed>
-
-          <div>{title}</div>
-          <div>{description}</div>
-        </Col>
-      </Row>
-    </Grid>
+    <Col md={8}>
+      <Panel>
+        <ResponsiveEmbed a16by9>
+          <iframe src={url} title={title} allowFullScreen></iframe>
+        </ResponsiveEmbed>
+      </Panel>
+      <Panel>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </Panel>
+    </Col>
   );
 }
 export default VideoPlayer;

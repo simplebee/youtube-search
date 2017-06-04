@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoListItem from './video-list-item';
-import {Grid, Row, Col, ListGroup} from 'react-bootstrap';
+import {Col, ListGroup} from 'react-bootstrap';
 
 const VideoList = (props) => {
   const videoItems = props.videos.map((video) => {
@@ -8,15 +8,11 @@ const VideoList = (props) => {
   });
 
   return (
-    <Grid>
-      <Row>
-        <Col xs={5} md={5}>
-          <ListGroup>
-            {videoItems}
-          </ListGroup>
-        </Col>
-      </Row>
-    </Grid>
+    <Col md={4}>
+      <ListGroup>
+        {videoItems}
+      </ListGroup>
+    </Col>
   );
 }
 

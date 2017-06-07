@@ -1,12 +1,12 @@
 import React from 'react';
 import {ListGroupItem, Media} from 'react-bootstrap';
 
-const VideoListItem = ({video}) => {
+const VideoListItem = ({video, onVideoSelect}) => {
   const imgurl = video.snippet.thumbnails.default.url;
   const title = video.snippet.title;
 
   return (
-    <ListGroupItem>
+    <ListGroupItem onClick={() => onVideoSelect(video)}>
       <Media>
         <Media.Left>
           <img src={imgurl} alt={title} />

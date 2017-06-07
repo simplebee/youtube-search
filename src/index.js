@@ -11,23 +11,46 @@ import './styles/index.css';
 
 class App extends Component {
   constructor(props) {
-    const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+    
     super(props);
-    this.state = {videos: []};
-    youtubeSearch({key: API_KEY, q:'cat'}, (videos) => {
-      this.setState({videos});
+
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
+    
+    this.onVideoSearch = this.onVideoSearch.bind(this);
+    this.onVideoSelect = this.onVideoSelect.bind(this);
+
+    this.onVideoSearch('cat');
+  }
+
+  onVideoSearch(q) {
+    const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+    youtubeSearch({key: API_KEY, q:q}, (videos) => {
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
+  }
+
+  onVideoSelect(selectedVideo) {
+    this.setState({selectedVideo});
   }
 
   render() {
     return (
       <Grid>
         <Row>
-          <SearchBar />
+          <SearchBar onVideoSearch={this.onVideoSearch} />
         </Row>
         <Row>
-          <VideoPlayer video={this.state.videos[0]}/>
-          <VideoList videos={this.state.videos} />
+          <VideoPlayer video={this.state.selectedVideo}/>
+          <VideoList
+            videos={this.state.videos}
+            onVideoSelect={this.onVideoSelect}
+          />
         </Row>
       </Grid>
     );

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'lodash';
 import SearchBar from './components/search-bar';
 import VideoPlayer from './components/video-player';
 import VideoList from './components/video-list';
@@ -21,6 +22,7 @@ class App extends Component {
     
     this.onVideoSearch = this.onVideoSearch.bind(this);
     this.onVideoSelect = this.onVideoSelect.bind(this);
+    this.throttleSearch = this.throttleSearch.bind(this);
 
     this.onVideoSearch('cat');
   }
@@ -39,11 +41,15 @@ class App extends Component {
     this.setState({selectedVideo});
   }
 
+  throttleSearch() {
+    return _.debounce(this.onVideoSearch, 500);
+  }
+
   render() {
     return (
       <Grid>
         <Row>
-          <SearchBar onVideoSearch={this.onVideoSearch} />
+          <SearchBar onVideoSearch={this.throttleSearch()} />
         </Row>
         <Row>
           <VideoPlayer video={this.state.selectedVideo}/>
